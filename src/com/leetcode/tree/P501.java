@@ -1,7 +1,6 @@
 package com.leetcode.tree;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class P501 {
@@ -9,13 +8,16 @@ public class P501 {
     class Solution {
 
         int occurCurTimes = 1;
-        int occurMaxTimes = 1;
+        int occurMaxTimes = 0;
 
-        TreeNode preNode = null;
+        TreeNode preNode;
 
         List<TreeNode> res = new ArrayList<>();
 
         public int[] findMode(TreeNode root) {
+
+            if(root==null) return new int[]{};
+
             InOrderTravel(root);
             int[] modes = new int[res.size()];
             for (int i = 0; i < res.size(); i++) {
@@ -31,18 +33,17 @@ public class P501 {
             if (preNode != null) {
                 if (node.val == preNode.val) {
                     occurCurTimes++;
-                }
-                else {
-                    if (occurCurTimes == occurMaxTimes) {
-                        res.add(node);
-                    }
-                    else if (occurCurTimes > occurMaxTimes) {
-                        occurMaxTimes = occurCurTimes;
-                        res.clear();
-                        res.add(node);
-                    }
+                } else {
                     occurCurTimes = 1;
                 }
+            }
+            if (occurCurTimes == occurMaxTimes) {
+                res.add(node);
+            }
+            else if (occurCurTimes > occurMaxTimes) {
+                occurMaxTimes = occurCurTimes;
+                res.clear();
+                res.add(node);
             }
             preNode = node;
             InOrderTravel(node.right);
