@@ -1,44 +1,42 @@
 package com.leetcode.tree;
 
+/**
+ * 这套题厉害了。
+ * 直接看代码和注释吧
+ */
 public class P687 {
-    class Solution {
+        class Solution {
 
-        public int longestUnivaluePath(TreeNode root) {
-            if (root == null) return 0;
-            TreeNode left = root.left;
-            TreeNode right = root.right;
+            int maxlen = 0;
 
-            int leftDis = helper(left,root.val);
-            int rightDis = helper(right,root.val);
+            public int longestUnivaluePath(TreeNode root) {
+                helper(root);
+                return maxlen;
+            }
 
-            if (left != null && root.val == left.val)
-                leftDis += 1;
-            if (right != null && root.val == right.val)
-                rightDis += 1;
+            //函数返回的是链条长度
+            public int helper(TreeNode node) {
+                if(node==null) return 0;
+                //取出其左右子树的链条长度
+                int leftSon = helper(node.left);
+                int rightSon = helper(node.right);
+                //计算父节点node联通左右节点的长度
 
-            return Math.max(leftDis,rightDis);
+                int left=0,right=0;
+                if(node.left!=null&&node.val==node.left.val)
+                    left = leftSon+1;//考虑加上node，正好多一条边
+                if(node.right!=null&&node.val==node.right.val)
+                    right = rightSon+1;//考虑加上node，正好多一条边
+
+
+                int len = Math.max(left,right);
+                //打通左右
+                if(node.left!=null&&node.right!=null&&node.left.val==node.right.val&&node.left.val==node.val)
+                    len = left+right;
+
+                if(len>maxlen) maxlen=len;
+
+                return Math.max(left,right);
+            }
         }
-
-        public int helper(TreeNode node,int val) {
-            if(node==null) return 0;
-            TreeNode left = node.left;
-            TreeNode right = node.right;
-
-            int a=0,b=0;
-
-            if(left!=null)
-                if(left.val==node.val)
-                    a = helper(node.left,val)+1;
-                else
-                    a = helper(node.left,node.left.val);
-
-            if(right!=null&&right.val==node.val)
-                if(right.val==node.val)
-                    b = helper(node.right,val)+1;
-                else
-                    b = helper(node.right,node.right.val);
-
-            return Math.max(a,b);
-        }
-    }
 }
