@@ -13,7 +13,17 @@ public class Pm0402 {
         }
 
         public TreeNode centreNode(int [] nums,int start,int end) {
-            return null;
+            if(start>end) return null;
+
+            int centre = start+(end-start)/2;
+
+            TreeNode node = new TreeNode(nums[centre]);
+
+            node.left = centreNode(nums,start,centre-1);
+
+            node.right = centreNode(nums,centre+1,end);
+
+            return node;
         }
 
     }
