@@ -2,7 +2,6 @@ package com.leetcode.tree;
 
 public class PM1712 {
     class Solution {
-
         TreeNode newRoot ;
         TreeNode pre;
 
@@ -17,7 +16,8 @@ public class PM1712 {
             if(node==null) return;
             inOrder(node.left);
             pre.right = new TreeNode(node.val);
-            pre = node;
+            pre.left = null;
+            pre = pre.right;
             inOrder(node.right);
         }
     }
@@ -27,6 +27,6 @@ public class PM1712 {
         TreeNode node = TreeNode.getInstance(array);
         PM1712 problem = new PM1712();
         PM1712.Solution solution = problem.new Solution();
-        solution.convertBiNode(node);
+        TreeNode res = solution.convertBiNode(node);
     }
 }
