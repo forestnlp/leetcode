@@ -1,6 +1,6 @@
 package com.leetcode.tree;
 
-public class Pm0402 {
+public class PM0402 {
 
     class Solution {
         public TreeNode sortedArrayToBST(int[] nums) {
