@@ -1,10 +1,13 @@
 package com.leetcode.tree;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-public class P103M {
+public class PM32IIM {
     class Solution {
-        public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        public List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> res = new ArrayList<>();
             if (root == null) return res;
             Queue<TreeNode> que = new LinkedList<>();
@@ -28,14 +31,5 @@ public class P103M {
             }
             return res;
         }
-    }
-
-
-    public static void main(String[] args) {
-        Integer [] array = {3,9,20,null,null,15,7};
-        TreeNode node = TreeNode.getInstance(array);
-        P103M problem = new P103M();
-        P103M.Solution solution = problem.new Solution();
-        System.out.println(solution.zigzagLevelOrder(node));
     }
 }
