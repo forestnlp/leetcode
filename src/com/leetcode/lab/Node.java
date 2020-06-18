@@ -1,25 +1,25 @@
-package com.leetcode.tree;
+package com.leetcode.lab;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    public TreeNode next;
+public class Node {
+    public Node next;
+    public int val;
+    public Node left;
+    public Node right;
 
-    TreeNode(int x) {
+    Node(int x) {
         val = x;
     }
 
-    public static TreeNode getInstance(Integer[] nums) {
-        if (nums.length == 0) return new TreeNode(0);
-        Deque<TreeNode> nodeQueue = new LinkedList<>();
+    public static Node getInstance(Integer[] nums) {
+        if (nums.length == 0) return new Node(0);
+        Deque<Node> nodeQueue = new LinkedList<>();
         // 创建一个根节点
-        TreeNode root = new TreeNode(nums[0]);
+        Node root = new Node(nums[0]);
         nodeQueue.offer(root);
-        TreeNode cur;
+        Node cur;
         // 记录当前行节点的数量（注意不一定是2的幂，而是上一行中非空节点的数量乘2）
         int lineNodeNum = 2;
         // 记录当前行中数字在数组中的开始位置
@@ -39,13 +39,13 @@ public class TreeNode {
                 if (i == nums.length) return root;
                 cur = nodeQueue.poll();
                 if (nums[i] != null) {
-                    cur.left = new TreeNode(nums[i]);
+                    cur.left = new Node(nums[i]);
                     nodeQueue.offer(cur.left);
                 }
                 // 同上，说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root
                 if (i + 1 == nums.length) return root;
                 if (nums[i + 1] != null) {
-                    cur.right = new TreeNode(nums[i + 1]);
+                    cur.right = new Node(nums[i + 1]);
                     nodeQueue.offer(cur.right);
                 }
             }
@@ -59,11 +59,11 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return "TreeNode{" +
-                "val=" + val +
+        return "Node[" +
+                " val=" + val +
                 ", left=" + left.val +
                 ", right=" + right.val +
-                ", next=" + next.val +
-                '}';
+                ",next=" + next.val +
+                ']';
     }
 }

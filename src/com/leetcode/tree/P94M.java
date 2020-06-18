@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class P94M {
+public class  P94M {
     class Solution {
         public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> nodes = new ArrayList<>();
