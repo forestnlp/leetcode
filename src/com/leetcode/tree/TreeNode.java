@@ -2,12 +2,12 @@ package com.leetcode.tree;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
-    public TreeNode next;
 
     TreeNode(int x) {
         val = x;
@@ -61,9 +61,21 @@ public class TreeNode {
     public String toString() {
         return "TreeNode{" +
                 "val=" + val +
-                ", left=" + left.val +
-                ", right=" + right.val +
-                ", next=" + next.val +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TreeNode node = (TreeNode) o;
+        return val == node.val &&
+                Objects.equals(left, node.left) &&
+                Objects.equals(right, node.right);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, left, right);
     }
 }
