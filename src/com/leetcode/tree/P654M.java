@@ -17,7 +17,7 @@ public class P654M {
 
         public TreeNode helper(int[] nums,int start,int end) {
             int max = Integer.MIN_VALUE;
-            if(start>end) return;
+            if(start>end) return null;
             for(int i=start;i<=end;i++) {
                 if(nums[i]>max) max = nums[i];
             }
