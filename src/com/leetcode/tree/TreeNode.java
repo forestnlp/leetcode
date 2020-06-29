@@ -3,6 +3,7 @@ package com.leetcode.tree;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 public class TreeNode {
     int val;
@@ -77,5 +78,22 @@ public class TreeNode {
     @Override
     public int hashCode() {
         return Objects.hash(val, left, right);
+    }
+
+    public String bfs() {
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(this!=null) queue.offer(this);
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for(int i=0;i<size;i++) {
+                TreeNode node = queue.poll();
+                sb.append(node.val);
+                sb.append(' ');
+                if(node.left!=null)  queue.offer(node.left);
+                if(node.right!=null)  queue.offer(node.right);
+            }
+        }
+        return sb.toString();
     }
 }
