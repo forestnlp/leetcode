@@ -15,7 +15,7 @@ public class P35 {
                 else
                     return m;
             }
-            return nums[i]>target?i:i+1;
+            return i;
         }
     }
 }
