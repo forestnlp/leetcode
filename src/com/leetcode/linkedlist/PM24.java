@@ -5,7 +5,9 @@ public class PM24 {
         public ListNode reverseList(ListNode head) {
               ListNode dummy = new ListNode();
               while (head!=null) {
-
+                  ListNode n = dummy.next;
+                  dummy.next = head;
+                  head.next = n;
                   head = head.next;
               }
               return dummy.next;
