@@ -13,6 +13,7 @@ public class P202 {
                 set.add(next);
                 next = sqrnum(next);
             }
+
             return true;
         }
 
